@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/jokesFragment"
+        android:icon="@drawable/ic_buffoon"
+        android:title="Jokes" />
+    <item
+        android:id="@+id/webViewFragment"
+        android:icon="@drawable/ic_web"
+        android:title="Web" />
+</menu>
