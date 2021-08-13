@@ -9,8 +9,20 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/jokes_recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_margin="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/count_EditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -19,14 +31,15 @@
         android:id="@+id/count_EditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Count"
         android:layout_marginBottom="26dp"
-        app:layout_constraintBottom_toTopOf="@+id/appCompatButton"
+        android:hint="Count"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/reload_Button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/appCompatButton"
+        android:id="@+id/reload_Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="29dp"

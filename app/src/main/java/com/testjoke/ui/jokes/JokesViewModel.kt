@@ -17,7 +17,6 @@ class JokesViewModel @Inject constructor(private val repository: JokesRepository
     val jokes: LiveData<Resource<ApiResponse>> = _jokes
     val countJokes: StateFlow<Int> = _countJokes
 
-
     init {
         getJokes()
     }

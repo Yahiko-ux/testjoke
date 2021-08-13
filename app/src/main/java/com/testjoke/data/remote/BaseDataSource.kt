@@ -1,6 +1,5 @@
 package com.testjoke.data.remote
 
-import android.util.Log
 import com.testjoke.utils.Resource
 import retrofit2.Response
 
@@ -12,7 +11,6 @@ abstract class BaseDataSource {
             if (response.isSuccessful) {
                 val body = response.body()
                 if (body != null) return Resource.Success(body)
-
             }
             return error(" ${response.code()} ${response.message()}")
         } catch (e: Exception) {
@@ -21,7 +19,6 @@ abstract class BaseDataSource {
     }
 
     private fun <T> error(message: String): Resource<T> {
-        Log.e("remoteDataSource", message)
-        return Resource.Error<T>("Network call has failed for a following reason: $message")
+        return Resource.Error("Network call has failed for a following reason: $message")
     }
 }

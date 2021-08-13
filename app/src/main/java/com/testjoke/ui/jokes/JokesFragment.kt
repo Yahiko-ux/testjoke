@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.testjoke.R
 import com.testjoke.databinding.FragmentJokesBinding
@@ -15,35 +16,47 @@ import dagger.hilt.android.AndroidEntryPoint
 class JokesFragment : Fragment(R.layout.fragment_jokes) {
     private val binding: FragmentJokesBinding by viewBinding()
     private val viewModel: JokesViewModel by viewModels()
-
+    private val adapter = JokesAdapter()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.appCompatButton.setOnClickListener {
-            viewModel.setCount(binding.countEditText.text.toString().toInt())
-        }
+        setupRecyclerView()
+        setupObservers()
+        processReloadButtonTap()
+    }
 
+    private fun setupObservers() {
         viewModel.jokes.observe(viewLifecycleOwner, { response ->
             when (response) {
                 is Resource.Success -> {
-                    Toast.makeText(activity, response.data?.type, Toast.LENGTH_LONG)
-                        .show()
-                    binding.appCompatButton.text = response.data.toString()
+                    binding.progressBar.visibility = View.GONE
+                    response.data?.let { adapter.setItems(it.value) }
                 }
 
                 is Resource.Error -> {
+                    binding.progressBar.visibility = View.GONE
                     response.message?.let {
                         Toast.makeText(activity, it, Toast.LENGTH_LONG).show()
-                        binding.appCompatButton.text = it
                     }
                 }
 
                 is Resource.Loading -> {
-                    Toast.makeText(activity, "123142", Toast.LENGTH_SHORT).show()
+                    binding.progressBar.visibility = View.VISIBLE
                 }
             }
         })
+    }
 
+    private fun setupRecyclerView() {
+        binding.jokesRecyclerView.layoutManager =
+            LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        binding.jokesRecyclerView.adapter = adapter
+    }
+
+    private fun processReloadButtonTap() {
+        binding.reloadButton.setOnClickListener {
+            viewModel.setCount(binding.countEditText.text.toString().toInt())
+        }
     }
 }
