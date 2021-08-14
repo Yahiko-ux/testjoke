@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TestJoke</string>
+    <string name="count">Count</string>
+    <string name="reload">Reload</string>
 </resources>

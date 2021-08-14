@@ -29,10 +29,15 @@
 
     <EditText
         android:id="@+id/count_EditText"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="26dp"
-        android:hint="Count"
+        android:textSize="16sp"
+        android:hint="@string/count"
+        android:layout_marginStart="94dp"
+        android:layout_marginEnd="94dp"
+        android:textColorHint="#00BCD4"
+        android:backgroundTint="#00BCD4"
         android:inputType="number"
         app:layout_constraintBottom_toTopOf="@+id/reload_Button"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,10 +45,14 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/reload_Button"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="29dp"
-        android:text="Reload"
+        android:layout_marginStart="140dp"
+        android:layout_marginEnd="140dp"
+        android:background="#00BCD4"
+        android:textColor="@color/white"
+        android:text="@string/reload"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -56,7 +56,11 @@ class JokesFragment : Fragment(R.layout.fragment_jokes) {
 
     private fun processReloadButtonTap() {
         binding.reloadButton.setOnClickListener {
-            viewModel.setCount(binding.countEditText.text.toString().toInt())
+            val count = binding.countEditText.text.toString()
+            if (count.isNotEmpty()) {
+                viewModel.setCount(count.toInt())
+            } else Toast.makeText(activity, "The field must not be empty", Toast.LENGTH_SHORT)
+                .show()
         }
     }
 }
